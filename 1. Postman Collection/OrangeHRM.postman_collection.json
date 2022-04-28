@@ -1,0 +1,1027 @@
+{
+	"info": {
+		"_postman_id": "81c0a2d5-6a4e-41a4-95b6-e415fe3efc1e",
+		"name": "OrangeHRM [SIShoron]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "client_id",
+							"value": "webtest",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "webtest123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}index.php/oauth/issueToken",
+					"host": [
+						"{{host}}index",
+						"php"
+					],
+					"path": [
+						"oauth",
+						"issueToken"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Authentication",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_id",
+									"value": "webtest",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "webtest123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}index.php/oauth/issueToken",
+							"host": [
+								"{{host}}index",
+								"php"
+							],
+							"path": [
+								"oauth",
+								"issueToken"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:23:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "116"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "orangehrm=ab8333179a3dd5cf5e80574420736587; path=/; secure; HttpOnly"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\"access_token\":\"c02086340783cf596c8758a53d367c210b6ef060\",\"expires_in\":3600,\"token_type\":\"Bearer\",\"scope\":\"admin\"}"
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1020"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"userName\": \"Aaliyah.Haq\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Aaliyah Haq\",\n            \"employeeId\": \"10\"\n        },\n        {\n            \"userName\": \"Abraham\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"David Morris\",\n            \"employeeId\": \"17\"\n        },\n        {\n            \"userName\": \"abram_20220410_003309\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Varmaa Rajeshh\",\n            \"employeeId\": \"57\"\n        },\n        {\n            \"userName\": \"adash\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Ananya Dash\",\n            \"employeeId\": \"40\"\n        },\n        {\n            \"userName\": \"Admin\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Paul Collings\",\n            \"employeeId\": \"7\"\n        },\n        {\n            \"userName\": \"Amitabh\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Varmaa Rajeshh\",\n            \"employeeId\": \"46\"\n        },\n        {\n            \"userName\": \"Anthony.Nolan\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Anthony Nolan\",\n            \"employeeId\": \"18\"\n        },\n        {\n            \"userName\": \"Aravind\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Dominic Chase\",\n            \"employeeId\": \"6\"\n        },\n        {\n            \"userName\": \"Cassidy.Hope\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Cassidy Hope\",\n            \"employeeId\": \"12\"\n        },\n        {\n            \"userName\": \"Cecil.Bonaparte\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Cecil Bonaparte\",\n            \"employeeId\": \"27\"\n        },\n        {\n            \"userName\": \"Charlie.Carter\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Charlie Carter\",\n            \"employeeId\": \"29\"\n        },\n        {\n            \"userName\": \"Chenzira.Chuki\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Chenzira Chuki\",\n            \"employeeId\": \"30\"\n        },\n        {\n            \"userName\": \"David.Morris\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"David Morris\",\n            \"employeeId\": \"17\"\n        },\n        {\n            \"userName\": \"dilshad\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Dilshad Sethna-Nilakhe\",\n            \"employeeId\": \"44\"\n        },\n        {\n            \"userName\": \"dilshadsup\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"DilshadS S\",\n            \"employeeId\": \"43\"\n        },\n        {\n            \"userName\": \"Dominic.Chase\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Dominic Chase\",\n            \"employeeId\": \"6\"\n        },\n        {\n            \"userName\": \"Ehioze.Ebo\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Ehioze Ebo\",\n            \"employeeId\": \"32\"\n        },\n        {\n            \"userName\": \"Fiona.Grace\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Fiona Grace\",\n            \"employeeId\": \"8\"\n        },\n        {\n            \"userName\": \"Garry.White\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Garry White\",\n            \"employeeId\": \"25\"\n        },\n        {\n            \"userName\": \"Goutam.Ganesh\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Goutam Ganesh\",\n            \"employeeId\": \"34\"\n        },\n        {\n            \"userName\": \"HarryKane\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Harry Kane\",\n            \"employeeId\": \"58\"\n        },\n        {\n            \"userName\": \"Jacqueline W\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"Jacqueline White\",\n            \"employeeId\": \"24\"\n        },\n        {\n            \"userName\": \"Jacqueline Wh\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"Jacqueline White\",\n            \"employeeId\": \"24\"\n        },\n        {\n            \"userName\": \"Jacqueline.White\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Jacqueline White\",\n            \"employeeId\": \"24\"\n        },\n        {\n            \"userName\": \"Jadine.Jackie\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Jadine Jackie\",\n            \"employeeId\": \"36\"\n        },\n        {\n            \"userName\": \"Jasmine.Morgan\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Jasmine Morgan\",\n            \"employeeId\": \"16\"\n        },\n        {\n            \"userName\": \"jhaey\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"Lisa Andrews\",\n            \"employeeId\": \"28\"\n        },\n        {\n            \"userName\": \"jhaey1233\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"Lisa Andrews\",\n            \"employeeId\": \"28\"\n        },\n        {\n            \"userName\": \"Jline\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"Jacqueline White\",\n            \"employeeId\": \"24\"\n        },\n        {\n            \"userName\": \"Joe.Root\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Joe Root\",\n            \"employeeId\": \"21\"\n        },\n        {\n            \"userName\": \"John.Smith\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"John Smith\",\n            \"employeeId\": \"4\"\n        },\n        {\n            \"userName\": \"Jordan.Mathews\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Jordan Mathews\",\n            \"employeeId\": \"14\"\n        },\n        {\n            \"userName\": \"Kevin.Mathews\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Kevin Mathews\",\n            \"employeeId\": \"15\"\n        },\n        {\n            \"userName\": \"kimhuun\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Nguyễn Thị Kim Anh\",\n            \"employeeId\": \"61\"\n        },\n        {\n            \"userName\": \"Kiyara.Hu\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Kiyara Hu\",\n            \"employeeId\": \"35\"\n        },\n        {\n            \"userName\": \"Linda.Anderson\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Linda Jane Anderson\",\n            \"employeeId\": \"5\"\n        },\n        {\n            \"userName\": \"Lisa.Andrews\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Lisa Andrews\",\n            \"employeeId\": \"28\"\n        },\n        {\n            \"userName\": \"Luke.Wright\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Luke Wright\",\n            \"employeeId\": \"23\"\n        },\n        {\n            \"userName\": \"Maggie.Manning\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Maggie Manning\",\n            \"employeeId\": \"13\"\n        },\n        {\n            \"userName\": \"manali28\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Manali Kulkarni\",\n            \"employeeId\": \"38\"\n        },\n        {\n            \"userName\": \"Melan.Peiris\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Melan Peiris\",\n            \"employeeId\": \"20\"\n        },\n        {\n            \"userName\": \"Nathan.Elliot\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Nathan Elliot\",\n            \"employeeId\": \"33\"\n        },\n        {\n            \"userName\": \"Nina.Patel\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Nina Patel\",\n            \"employeeId\": \"19\"\n        },\n        {\n            \"userName\": \"Odis.Adalwin\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Odis Adalwin\",\n            \"employeeId\": \"2\"\n        },\n        {\n            \"userName\": \"Peter.Anderson\",\n            \"userRole\": \"Admin\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Peter Mac Anderson\",\n            \"employeeId\": \"3\"\n        },\n        {\n            \"userName\": \"Rebecca.Harmony\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Rebecca Harmony\",\n            \"employeeId\": \"11\"\n        },\n        {\n            \"userName\": \"Russel.Hamilton\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Russel Hamilton\",\n            \"employeeId\": \"9\"\n        },\n        {\n            \"userName\": \"Sania.Shaheen\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Sania Shaheen\",\n            \"employeeId\": \"22\"\n        },\n        {\n            \"userName\": \"Sara.Tencrady\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Enabled\",\n            \"employeeName\": \"Sara Tencrady\",\n            \"employeeId\": \"26\"\n        },\n        {\n            \"userName\": \"Student\",\n            \"userRole\": \"ESS\",\n            \"status\": \"Disabled\",\n            \"employeeName\": \"student name student middle name student last name\",\n            \"employeeId\": \"62\"\n        }\n    ],\n    \"rels\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Admin\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Admin\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "orangehrm=fe2384d7b5ce55832562f1e5547da0ec; path=/; secure; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "Loggedin=True; HttpOnly"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"login\": true,\n    \"user\": {\n        \"userName\": \"Admin\",\n        \"userRole\": \"Admin\",\n        \"status\": \"Enabled\",\n        \"employeeName\": \"Paul Collings\",\n        \"employeeId\": \"7\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/customer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Customers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/customer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "546"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"customerId\": \"7\",\n            \"name\": \"ACME Ltd\",\n            \"description\": \"Leading apparel manufacturing chain.\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"1\",\n            \"name\": \"Apache Software Foundation\",\n            \"description\": \"non-profit corporation to support Apache software projects\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"5\",\n            \"name\": \"FreeWave Technologies, Inc.\",\n            \"description\": \"Its wireless data radios are utilized in industrial, government and defense, scientific, and commercial applications\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"4\",\n            \"name\": \"Fresh Books Software Ltd\",\n            \"description\": \"\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"6\",\n            \"name\": \"Global Corp and Co\",\n            \"description\": \"Global Corp introduces itself as a leading manufacturer and exporter of a large number of products catering to high precision equipment, Scientific Laboratory Equipments & Institutional Health Care Products.\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"8\",\n            \"name\": \"Internal\",\n            \"description\": \"\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"3\",\n            \"name\": \"The Coca-Cola Company\",\n            \"description\": \"Multinational beverage corporation and manufacturer\",\n            \"isDeleted\": \"0\"\n        },\n        {\n            \"customerId\": \"9\",\n            \"name\": \"The Priceline Group\",\n            \"description\": \"American-based provider of travel and related online services to consumers\",\n            \"isDeleted\": \"0\"\n        }\n    ],\n    \"rels\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Save Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Sadia Islam\",\r\n    \"description\":\"Loyal Customer\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/customer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Save Customer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Sadia Islam\",\r\n    \"description\":\"Loyal Customer\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/customer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "User-Agent"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"Successfully Saved\",\n    \"customerId\": \"11\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\":\"11\",\r\n    \"name\":\"Sadia Islam\",\r\n    \"description\":\"Loyal Customer from the very first\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/customer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Update Customer",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\":\"11\",\r\n    \"name\":\"Sadia Islam\",\r\n    \"description\":\"Loyal Customer from the very first\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/customer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "User-Agent"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"Successfully Updated\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\":\"11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/customer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response_Delete Customer",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\":\"11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/customer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Apr 2022 20:24:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "User-Agent"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubdomains;"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self' *.projects-abroad.net fonts.googleapis.com fonts.gstatic.com code.jquery.com maxcdn.bootstrapcdn.com ajax.googleapis.com cdnjs.cloudflare.com native.testing.equest.com www.google.com *.docusign.net www.youtube.com youtu.be player.vimeo.com docs.google.com 'unsafe-inline' 'unsafe-eval' data: font;frame-src 'self' native.testing.equest.com *.orangehrmlive.com *.orangehrm.com *.amazonaws.com;connect-src 'self' *.orangehrm.com *.orangehrmlive.com;worker-src blob: 'self';img-src * 'self' data: blob:"
+						},
+						{
+							"key": "client_max_body_size",
+							"value": "50M"
+						},
+						{
+							"key": "Public-Key-Pins",
+							"value": "pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\";pin-sha256=\"blgmjf3Tb3C0sUqb7jo4axiZAnr327fX0ycrUGqjw2k=\";pin-sha256=\"puCdyuZdXoDc5jSdcGKU6mdjd0VNq16yoaO2BcDF36A=\";pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\"; pin-sha256=\"Slt48iBVTjuRQJTjbzopminRrHSGtndY0/sj0lFf9Qk=\"; max-age=63072000; includeSubDomains"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"Successfully Deleted\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://opensource-demo.orangehrmlive.com/",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
